@@ -45,7 +45,7 @@ ZSH_CUSTOM=$HOME/.zshrc.custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git boot2docker tmux-cssh docker pip python virtualenvwrapper brew vagrant coffee node osx zsh_reload tmux rsync npm mosh jsontools cp common-aliases colorize colored-man celery cake brew-cask bower ssh-agent)
+plugins=(git boot2docker tmux-cssh docker pip python virtualenvwrapper brew vagrant coffee node osx zsh_reload tmux rsync npm mosh jsontools cp common-aliases colorize colored-man celery cake brew-cask bower ssh-agent gpg-agent)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -54,7 +54,8 @@ source $ZSH/oh-my-zsh.sh
 export PATH=""
 export PATH="$PATH:$HOME/mbin:$HOME/mbin2"
 export PATH="$PATH:$HOME/node_modules/.bin/usr/local/share/npm/bin"
-export PATH="$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin"
+export PATH="$PATH:/bin:/sbin:/usr/bin:/usr/sbin"
+export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export MANPATH="/usr/local/man:$MANPATH"
 
 export LANG=en_US.UTF-8
