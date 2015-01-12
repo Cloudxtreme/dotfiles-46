@@ -78,7 +78,10 @@ brew install boot2docker
 brew install encfs
 brew install csshx
 brew install ipcalc
-
+brew install sshuttle
+brew install ngrok
+#brew install mesos
+brew install hg
 
 brew tap homebrew/versions
 brew install lua52
@@ -144,6 +147,7 @@ installcask ireadfast
 installcask vagrant
 installcask gitter
 installcask bit-slicer
+installcask bittorrent-sync
 
 brew tap jimbojsb/launchrocket
 installcask launchrocket
