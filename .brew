@@ -82,6 +82,7 @@ brew install sshuttle
 brew install ngrok
 #brew install mesos
 brew install hg
+brew install awscli
 
 brew tap homebrew/versions
 brew install lua52
