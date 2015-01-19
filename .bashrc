@@ -186,3 +186,6 @@ unset PS1_PREFIX
 
 ## CLEAN
 unset BREW_PREFIX
+
+# added by travis gem
+[ -f /Users/moul/.travis/travis.sh ] && source /Users/moul/.travis/travis.sh
