@@ -129,7 +129,7 @@
         rebase = true
 
 [branch "master"]
-        #rebase = true
+        rebase = true
         #mergeoptions = --no-commit --no-ff
         mergeoptions = --no-ff
 
