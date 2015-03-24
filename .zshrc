@@ -53,7 +53,8 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH=""
 export PATH="$PATH:$HOME/mbin:$HOME/mbin2"
-export PATH="$PATH:$HOME/node_modules/.bin/usr/local/share/npm/bin"
+export PATH="$PATH:$HOME/node_modules/.bin"
+export PATH="$PATH:/usr/local/share/npm/bin"
 export PATH="$PATH:/bin:/sbin:/usr/bin:/usr/sbin"
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export MANPATH="/usr/local/man:$MANPATH"
