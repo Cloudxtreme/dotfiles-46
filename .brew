@@ -39,6 +39,7 @@ brew install php54
 
 # Install other useful binaries
 brew install q
+brew install gpg
 brew install fig
 brew install ack
 #brew install exiv2
@@ -161,8 +162,9 @@ installcask bittorrent-sync
 brew tap jimbojsb/launchrocket
 installcask launchrocket
 
-
-
+installcask osxfuse
+#brew install Caskroom/cask/osxfuse
+brew install encfs
 
 # Remove outdated versions from the cellar
 brew cleanup
