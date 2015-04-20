@@ -95,6 +95,7 @@ brew tap phinze/homebrew-cask
 brew install brew-cask
 
 
+installcask shimo
 installcask tower
 installcask xquartz
 installcask flash
@@ -153,6 +154,7 @@ installcask colloquy
 installcask ireadfast
 installcask vagrant
 installcask gitter
+installcask slack
 installcask bit-slicer
 installcask bittorrent-sync
 
