@@ -45,7 +45,8 @@ ZSH_CUSTOM=$HOME/.zshrc.custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git boot2docker tmux-cssh docker pip python virtualenvwrapper brew vagrant coffee node osx zsh_reload tmux rsync npm mosh jsontools cp common-aliases colorize colored-man celery cake brew-cask bower ssh-agent)
+#plugins=(git boot2docker tmux-cssh docker pip python virtualenvwrapper brew vagrant coffee node osx zsh_reload tmux rsync npm mosh jsontools cp common-aliases colorize colored-man celery cake brew-cask bower ssh-agent scw)
+plugins=(git docker osx cp common-aliases colorize scw ssh-agent)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -69,3 +70,6 @@ alias rm="rm -f"
 if [ -f $HOME/.zshrc.local ]; then
     . $HOME/.zshrc.local
 fi
+
+# added by travis gem
+[ -f /Users/moul/.travis/travis.sh ] && source /Users/moul/.travis/travis.sh
