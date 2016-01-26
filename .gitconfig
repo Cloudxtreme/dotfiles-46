@@ -13,10 +13,11 @@
 [user]
         name = Manfred Touron
         email = m@42.am
-        signingkey = CABAE1B5
+        signingkey = AB123456
 [github]
         user = moul
 [alias]
+        fixup = "!sh -c '(git diff-files --quiet || (echo Unstaged changes, please commit or stash with --keep-index; exit 1)) && COMMIT=$(git rev-parse $1) && git commit --fixup=$COMMIT && git rebase -i --autosquash $COMMIT~1' -"
         assume = update-index --assume-unchanged
         assumed = "!git ls-files -v | grep ^h | cut -c 3-"
         ci = "commit -s -S"
@@ -201,3 +202,7 @@
         path = ".gitconfig_private"
 [push]
 	default = simple
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
