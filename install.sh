@@ -3,7 +3,7 @@
 CURDIR=$(pwd)
 
 # create symlinks
-for file in .bashrc .brew .gitconfig .ssh/.* .zshrc Library/Preferences/com.apple.Terminal.plist Vagrantfile virtualenvwrapper; do
+for file in .bashrc .brew .gitconfig .ssh/assh.yml .zshrc Library/Preferences/com.apple.Terminal.plist Vagrantfile virtualenvwrapper; do
     (
         if [ -e "${HOME}/${file}" ]; then
             echo "- ln -s ${CURDIR}/${file} ${HOME}/${file}: file exists"
