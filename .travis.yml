@@ -1,0 +1,10 @@
+language: sh
+
+sudo: false
+
+install:
+  - curl -Lso shellcheck https://github.com/caarlos0/shellcheck-docker/releases/download/v0.4.4/shellcheck
+  - chmod +x shellcheck
+
+script:
+  - ./shellcheck -e SC1091,SC2034,SC1090 .zshrc

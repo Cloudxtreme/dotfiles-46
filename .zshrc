@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -48,7 +50,7 @@ ZSH_CUSTOM=$HOME/.zshrc.custom
 #plugins=(git boot2docker tmux-cssh docker pip python virtualenvwrapper brew vagrant coffee node osx zsh_reload tmux rsync npm mosh jsontools cp common-aliases colorize colored-man celery cake brew-cask bower ssh-agent scw)
 plugins=(git docker osx cp common-aliases colorize scw ssh-agent gpg-agent golang python zsh_reload)
 
-source $ZSH/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"
 
 # User configuration
 
@@ -67,8 +69,8 @@ export EDITOR='emacs'
 unsetopt sharehistory
 alias rm="rm -f"
 
-if [ -f $HOME/.zshrc.local ]; then
-    . $HOME/.zshrc.local
+if [ -f "$HOME/.zshrc.local" ]; then
+    . "$HOME/.zshrc.local"
 fi
 
 # added by travis gem
