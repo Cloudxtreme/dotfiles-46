@@ -7,4 +7,4 @@ install:
   - chmod +x shellcheck
 
 script:
-  - ./shellcheck .zshrc
+  - ./shellcheck -e SC2034 .zshrc
