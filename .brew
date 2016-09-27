@@ -159,6 +159,8 @@ installcask slack
 installcask bit-slicer
 installcask bittorrent-sync
 
+brew install git-subrepo
+
 brew tap jimbojsb/launchrocket
 installcask launchrocket
 
