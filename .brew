@@ -140,6 +140,37 @@ installcask vlc
 installcask xbmc
 installcask xquartz
 
+mas_install() {
+    mas install mas search "$1" | grep "$1:" | awk '{print $1}'
+}
+
+brew install mas
+mas install "Final Cut Pro"
+mas install "Bee"
+mas install "Kaleidoscope"
+mas install "BetterSnapTool"
+mas install "Keynote"
+mas install "Remote Desktop"
+mas install "LastPass"
+mas install "djay Pro"
+mas install "GarageBand"
+mas install "Monodraw"
+mas install "1Password"
+mas install "Motion"
+mas install "Numbers"
+mas install "Paste"
+mas install "MainStage 3"
+mas install "Pages"
+mas install "Transmit"
+mas install "Xcode"
+mas install "iMovie"
+mas install "Spark"
+mas install "Logic Pro X"
+mas install "Compressor"
+mas install "Gitbox"
+mas install "FullContact"
+mas install "Deliveries"
+
 echo "Don’t forget to add $(brew --prefix coreutils)/libexec/gnubin to \$PATH."
 
 # Remove outdated versions from the cellar
