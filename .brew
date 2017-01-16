@@ -141,7 +141,7 @@ installcask xbmc
 installcask xquartz
 
 mas_install() {
-    mas install mas search "$1" | grep "$1:" | awk '{print $1}'
+    mas install $(mas search "$1" | grep "$1:" | awk '{print $1}')
 }
 
 brew install mas
