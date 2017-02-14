@@ -61,6 +61,7 @@ export PATH="$PATH:/usr/local/share/npm/bin"
 export PATH="$PATH:/bin:/sbin:/usr/bin:/usr/sbin"
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export MANPATH="/usr/local/man:$MANPATH"
+export PATH="$PATH:$HOME/go/bin"
 
 export LANG=en_US.UTF-8
 export EDITOR='emacs'
