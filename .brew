@@ -126,8 +126,10 @@ installcask google-chrome-canary
 installcask google-drive
 installcask i-stumbler
 installcask iterm2
+installcask little-snitch
 installcask osxfuse
 installcask shimo
+installcask suspicious-package
 installcask team-viewer
 installcask textexpander
 installcask the-unarchiver
