@@ -11,12 +11,13 @@
 [achievement]
         upload = false
 [user]
-        name = Manfred Touron
-        email = m@42.am
+	name = Manfred Touron
+	email = m@42.am
         signingkey = AB123456
 [github]
         user = moul
 [alias]
+        track = !cds track $(git rev-parse HEAD)
         fixup = "!sh -c '(git diff-files --quiet || (echo Unstaged changes, please commit or stash with --keep-index; exit 1)) && COMMIT=$(git rev-parse $1) && git commit --fixup=$COMMIT && git rebase -i --autosquash $COMMIT~1' -"
         assume = update-index --assume-unchanged
         assumed = "!git ls-files -v | grep ^h | cut -c 3-"
@@ -114,8 +115,9 @@
 
 [diff]
         tool = ksdiff
-        renames = copies
-        algorithm = patience
+	renames = 0
+#        algorithm = patience
+	renameLimit = 0
 
 [difftool "ksdiff"]
         cmd = "ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\""
@@ -168,10 +170,13 @@
 [url "git@gist.github.com:"]
         insteadOf = "gst:"
 
+[url "git@github.com:"]
+        insteadOf = https://github.com/
+
 #[credential]
 #       helper = osxkeychain
 
-#[remote "origin"]
+[remote "origin"]
         fetch = +refs/pull/*/head:refs/remotes/origin/pr/*
 
 [remote "upstream"]
@@ -204,13 +209,19 @@
 [push]
         default = simple
 [filter "lfs"]
-        clean = git-lfs clean %f
-        smudge = git-lfs smudge %f
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
         required = true
+	process = git-lfs filter-process
 [http]
         cookiefile = /Users/moul/.gitcookies
+	sslVerify = true
 [color "diff-highlight"]
         oldNormal = red bold
         oldHighlight = red bold 52
         newNormal = green bold
         newHighlight = green bold 22
+[gpg]
+	program = gpg
+[url "ssh://git@git.vpgrp.io/"]
+	insteadOf = https://git.vpgrp.io/

@@ -1,78 +1,66 @@
-#!/bin/bash
+#!/bin/zsh
 
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM=$HOME/.zshrc.custom
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-#plugins=(git boot2docker tmux-cssh docker pip python virtualenvwrapper brew vagrant coffee node osx zsh_reload tmux rsync npm mosh jsontools cp common-aliases colorize colored-man celery cake brew-cask bower ssh-agent scw)
-plugins=(git docker osx cp common-aliases colorize scw ssh-agent gpg-agent golang python zsh_reload)
-
-source "$ZSH/oh-my-zsh.sh"
-
-# User configuration
-
-export PATH=""
-export PATH="$PATH:$HOME/mbin:$HOME/mbin2"
-export PATH="$PATH:$HOME/node_modules/.bin"
-export PATH="$PATH:/usr/local/share/npm/bin"
-export PATH="$PATH:/bin:/sbin:/usr/bin:/usr/sbin"
-export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
-export MANPATH="/usr/local/man:$MANPATH"
-export PATH="$PATH:$HOME/go/bin"
-
-export LANG=en_US.UTF-8
-export EDITOR='emacs'
-# export ARCHFLAGS="-arch x86_64"
-
-unsetopt sharehistory
-alias rm="rm -f"
-
-if [ -f "$HOME/.zshrc.local" ]; then
-    . "$HOME/.zshrc.local"
+if [ "$(uname)" = "Darwin" ]; then
+  export GREP_OPTIONS='--color=always'
+  export GREP_COLOR='1;35;40'
 fi
+export TERM=xterm-256color
+export EDITOR=emacs
+export LSCOLORS=exfxcxdxbxegedabagacad
+export CLICOLOR=true
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$PATH
 
-# added by travis gem
-[ -f /Users/moul/.travis/travis.sh ] && source /Users/moul/.travis/travis.sh
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+# don't nice background tasks
+setopt NO_BG_NICE
+setopt NO_HUP
+setopt NO_LIST_BEEP
+# allow functions to have local options
+setopt LOCAL_OPTIONS
+# allow functions to have local traps
+setopt LOCAL_TRAPS
+# share history between sessions ???
+setopt SHARE_HISTORY
+# add timestamps to history
+setopt EXTENDED_HISTORY
+setopt PROMPT_SUBST
+setopt CORRECT
+setopt COMPLETE_IN_WORD
+# adds history
+setopt APPEND_HISTORY
+# adds history incrementally and share it across sessions
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+# don't record dupes in history
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_VERIFY
+setopt HIST_EXPIRE_DUPS_FIRST
+# dont ask for confirmation in rm globs*
+setopt RM_STAR_SILENT
+
+# antibody
+if [[ ! -e "$HOME/.zsh_plugins.sh" ]]; then
+    # Fetch plugins.
+    antibody bundle < "$HOME/.zsh_plugins.txt" > "$HOME/.zsh_plugins.sh"
+fi
+source ~/.zsh_plugins.sh
+
+
+export GPG_TTY=$(tty)
+export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
+eval "$(gpgconf --launch gpg-agent)"
+echo UPDATESTARTUPTTY | gpg-connect-agent 1>/dev/null
+
+# If the SSH agent is running then add any keys.
+if [ "$SSH_AUTH_SOCK" ] && [ $(ssh-add -l >| /dev/null 2>&1; echo $?) = 1 ]; then
+    ssh-add
+fi
