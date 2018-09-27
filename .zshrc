@@ -1,5 +1,3 @@
-#!/bin/zsh
-
 if [ "$(uname)" = "Darwin" ]; then
   export GREP_OPTIONS='--color=always'
   export GREP_COLOR='1;35;40'
@@ -12,10 +10,11 @@ export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export GOPATH=$HOME/go
 export PATH=$GOPATH/bin:$PATH
+export ZSH_CACHE_DIR=$HOME/.zsh/cache
 
 HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 
 # don't nice background tasks
 setopt NO_BG_NICE
@@ -47,6 +46,27 @@ setopt HIST_EXPIRE_DUPS_FIRST
 # dont ask for confirmation in rm globs*
 setopt RM_STAR_SILENT
 
+# completion
+autoload -Uz compinit; compinit -i
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select=2
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+zstyle ':completion:*' accept-exact '*(N)'
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
 # antibody
 if [[ ! -e "$HOME/.zsh_plugins.sh" ]]; then
     # Fetch plugins.
@@ -54,13 +74,11 @@ if [[ ! -e "$HOME/.zsh_plugins.sh" ]]; then
 fi
 source ~/.zsh_plugins.sh
 
-
+# ssh & gpg
 export GPG_TTY=$(tty)
 export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
 eval "$(gpgconf --launch gpg-agent)"
 echo UPDATESTARTUPTTY | gpg-connect-agent 1>/dev/null
-
-# If the SSH agent is running then add any keys.
 if [ "$SSH_AUTH_SOCK" ] && [ $(ssh-add -l >| /dev/null 2>&1; echo $?) = 1 ]; then
     ssh-add
 fi
